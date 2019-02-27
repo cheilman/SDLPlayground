@@ -2,6 +2,5 @@ cc_binary(
     name = "sdl_playground",
     srcs = ["src/main.cpp"],
     deps = [ "@absl//absl/strings",
-             "@sdl2//:SDL2",
-             "@sdl2//src/main:main"],
+             "@sdl2//:SDL2"],
 )

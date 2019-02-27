@@ -10,7 +10,7 @@
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     std::vector <std::string> strs{"Hello", "World!"};
     std::cout << absl::StrJoin(strs, " ") << std::endl;
 
@@ -42,8 +42,24 @@ int main(int argc, char* argv[]) {
     // Wait two seconds
     SDL_Delay(2000);
 
+    std::cout << "Loading..." << std::endl;
+
+    SDL_Surface *helloWorldImg = SDL_LoadBMP("/Users/chris/Desktop/test.bmp");
+    if (helloWorldImg == nullptr) {
+        std::cerr << "Failed to load bmp: " << SDL_GetError() << std::endl;
+        return 1;
+    }
+
+    SDL_BlitSurface(helloWorldImg, NULL, screenSurface, NULL);
+
+    // Update the surface
+    SDL_UpdateWindowSurface(window);
+
+    // Wait two seconds
+    SDL_Delay(2000);
+
     // Destroy window
-    SDL_DestroyWindow( window );
+    SDL_DestroyWindow(window);
 
     // Quit SDL subsystems
     SDL_Quit();
